@@ -21,7 +21,7 @@ export const PageCard = ({ children, widgetId }: PageCardProps) => {
     const isFavorite = useMemo(() => favorites?.includes(widgetId) ?? false, [favorites, widgetId]);
 
     const handleFavorite = useCallback(() => {
-        favorite.mutate({ widgetId, isFavorite });
+        favorite.mutate({ widgetId, isFavorite: !isFavorite });
     }, [isFavorite, widgetId]);
 
     return (
