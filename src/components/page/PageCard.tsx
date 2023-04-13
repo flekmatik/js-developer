@@ -15,7 +15,7 @@ export const PageCard = ({ children, widgetId }: PageCardProps) => {
     const favorite = trpc.favorite.useMutation({
         onSuccess() {
             utils.favorites.invalidate();
-        }
+        },
     });
 
     const isFavorite = useMemo(() => favorites?.includes(widgetId) ?? false, [favorites, widgetId]);
@@ -36,20 +36,22 @@ export const PageCard = ({ children, widgetId }: PageCardProps) => {
                         <Avatar size="small" icon={<UserOutlined />} aria-label="user avatar" />
                     </Col>
                     <Col>
-                        <Button
-                            type="text"
-                            style={{
-                                padding: '0px 5px',
-                                height: 'auto',
-                                marginRight: 5,
-                            }}
-                            onClick={handleFavorite}
-                            aria-label="favorite"
-                        >
-                            {favorites?.includes(widgetId)
-                                ? <HeartFilled />
-                                : <HeartOutlined />}
-                        </Button>
+                        {favorites && (
+                            <Button
+                                type="text"
+                                style={{
+                                    padding: '0px 5px',
+                                    height: 'auto',
+                                    marginRight: 5,
+                                }}
+                                onClick={handleFavorite}
+                                aria-label="favorite"
+                            >
+                                {favorites?.includes(widgetId)
+                                    ? <HeartFilled />
+                                    : <HeartOutlined />}
+                            </Button>
+                        )}
                         <Button type="text" disabled style={{ padding: 0, height: 'auto' }} aria-label="comments">
                             3
                             <MessageOutlined style={{ marginLeft: 4 }} />
