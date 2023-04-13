@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 interface ResponseData {
     age: string;
@@ -34,12 +34,21 @@ export const AgeDistributionChart = () => {
                 height: 300,
             });
             chart.forceFit();
+            chart.tooltip({ showTitle: false });
             chart.interval()
                 .position('ratio')
                 .color('label')
+                .tooltip('label*ratio', (label, ratio) => ({
+                    name: label,
+                    value: `${Math.round(ratio * 100)}%`,
+                }))
                 .adjust('stack');
             chart.coordinate('theta', { radius: 0.75 });
+
+            const handler = () => chart.forceFit();
+            window.addEventListener('resize', handler, true);
             setChartRef(chart);
+            return window.removeEventListener('resize', handler);
         }
     }, []);
 

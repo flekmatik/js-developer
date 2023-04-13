@@ -16,15 +16,24 @@ export const NewCasesChart = () => {
                 container: node,
                 height: 300,
             });
-            chart.line().position('date*cumCasesByPublishDate');
+            chart.forceFit();
+            chart.line()
+                .position('date*cumCasesByPublishDate')
+                .tooltip('date*cumCasesByPublishDate', (date, cumCasesByPublishDate) => ({
+                    name: 'Total cases',
+                    value: cumCasesByPublishDate.toLocaleString(),
+                }));
+
+            const handler = () => chart.forceFit();
+            window.addEventListener('resize', handler, true);
             setChartRef(chart);
+            return window.removeEventListener('resize', handler);
         }
     }, []);
 
     useEffect(() => {
         chartRef?.data(responseData ?? []);
         chartRef?.render();
-        chartRef?.forceFit();
     }, [chartRef, responseData]);
 
     useEffect(() => {

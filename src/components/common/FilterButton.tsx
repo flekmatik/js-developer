@@ -1,5 +1,5 @@
 import { FilterOutlined } from '@ant-design/icons';
-import { Badge, Button, Space, theme } from 'antd';
+import { Badge, Button, theme } from 'antd';
 
 export const FilterButton = () => {
     const { token: { colorPrimary } } = theme.useToken();

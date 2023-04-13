@@ -1,11 +1,8 @@
 import Head from 'next/head';
-import { Inter } from 'next/font/google';
 import { Layout } from 'antd';
 import { AppHeader } from '@/components/app/AppHeader';
 import { AppContent } from '@/components/app/AppContent';
 import 'antd/dist/reset.css';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
     return (
