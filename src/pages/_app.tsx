@@ -1,17 +1,19 @@
-import '@/styles/globals.css'
+import '@/styles/globals.css';
 import { ConfigProvider } from 'antd';
-import type { AppProps } from 'next/app'
+import type { AppType } from 'next/app';
+import { trpc } from '@/utils/trpc';
 
-export default function App({ Component, pageProps }: AppProps) {
-  return (
-      <ConfigProvider
-          theme={{
+const App: AppType = ({ Component, pageProps }) => (
+    <ConfigProvider
+        theme={{
             token: {
-              colorPrimary: '#0f7365',
+                colorPrimary: '#0f7365',
             },
-          }}
-      >
+        }}
+    >
         <Component {...pageProps} />
-      </ConfigProvider>
-  );
-}
+    </ConfigProvider>
+);
+
+export default trpc.withTRPC(App);
+
