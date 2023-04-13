@@ -16,6 +16,11 @@ export const NewCasesChart = () => {
                 container: node,
                 height: 300,
             });
+            chart.axis('cumCasesByPublishDate', {
+                label: {
+                    formatter: text => Number(text).toLocaleString(),
+                },
+            });
             chart.forceFit();
             chart.line()
                 .position('date*cumCasesByPublishDate')
@@ -42,5 +47,11 @@ export const NewCasesChart = () => {
             .then(json => setResponseData(json.data));
     }, []);
 
-    return <div ref={refCallback} style={{ width: '100%', padding: 20 }} />;
+    return (
+        <div
+            aria-label="new cases chart"
+            ref={refCallback}
+            style={{ width: '100%', padding: 20 }}
+        />
+    );
 };

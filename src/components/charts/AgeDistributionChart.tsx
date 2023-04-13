@@ -34,7 +34,7 @@ export const AgeDistributionChart = () => {
                 height: 300,
             });
             chart.forceFit();
-            chart.tooltip({ showTitle: false });
+            chart.tooltip({ showTitle: false, showMarkers: false, });
             chart.interval()
                 .position('ratio')
                 .color('label')
@@ -55,7 +55,6 @@ export const AgeDistributionChart = () => {
     useEffect(() => {
         chartRef?.data(chartData ?? []);
         chartRef?.render();
-        chartRef?.forceFit();
     }, [chartRef, chartData]);
 
     useEffect(() => {
@@ -64,5 +63,11 @@ export const AgeDistributionChart = () => {
             .then(json => setResponseData(json.data[0].cumAdmissionsByAge));
     }, []);
 
-    return <div ref={refCallback} style={{ width: '100%', padding: 20 }} />;
+    return (
+        <div
+            aria-label="age distribution chart"
+            ref={refCallback}
+            style={{ width: '100%', padding: 20 }}
+        />
+    );
 };

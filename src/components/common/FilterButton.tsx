@@ -12,11 +12,7 @@ export const FilterButton = () => {
                 color={colorPrimary}
                 overflowCount={9}
                 size="small"
-                style={{
-                    marginLeft: 5,
-                    // display: 'inline-flex',
-                    // alignItems: 'center'
-                }}
+                style={{ marginLeft: 5 }}
             />
             <FilterOutlined style={{ color: colorPrimary }} />
         </Button>

@@ -7,9 +7,7 @@ interface PageCardProps {
 
 export const PageCard = ({ children }: PageCardProps) => {
     return (
-        <Card
-            title="Chart Title"
-        >
+        <Card title="Chart Title">
             {children}
             <Card.Grid
                 style={{ width: '100%', padding: '5px 10px' }}
@@ -17,10 +15,10 @@ export const PageCard = ({ children }: PageCardProps) => {
             >
                 <Row justify="space-between">
                     <Col>
-                        <Avatar size="small" icon={<UserOutlined />} />
+                        <Avatar size="small" icon={<UserOutlined />} aria-label="user avatar" />
                     </Col>
                     <Col>
-                        <Button type="text" disabled style={{ padding: 0, height: 'auto' }}>
+                        <Button type="text" disabled style={{ padding: 0, height: 'auto' }} aria-label="comments">
                             3
                             <MessageOutlined style={{ marginLeft: 4 }} />
                         </Button>
